@@ -324,6 +324,31 @@
     document.head.appendChild(style);
   }
 
+  // OPTION 5: SHIMMER (Light sweep across labels)
+  function animateShimmer() {
+    const positions = [
+      { left: "20%", top: "15%" },
+      { right: "10%", top: "50%" },
+      { left: "50%", bottom: "15%" },
+      { left: "10%", top: "50%" }
+    ];
+
+    floatLabels.forEach((label, i) => {
+      Object.assign(label.style, positions[i]);
+      label.style.animation = `shimmer-label 3.5s ease-in-out infinite`;
+      label.style.animationDelay = `${i * 0.45}s`;
+    });
+
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes shimmer-label {
+        0%, 100% { opacity: 0.5; box-shadow: none; }
+        50% { opacity: 1; box-shadow: 0 0 12px rgba(232, 164, 74, 0.6), inset 0 0 8px rgba(232, 164, 74, 0.15); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   // OPTION 6: GRID SLIDE (Technical blueprint effect)
   function animateGridSlide() {
     const positions = [
@@ -494,7 +519,7 @@
       animateGlowOrbit();
       break;
     default:
-      animateGearSpin(); // Default to gear-spin
+      animateGearSpin();
   }
 
   /* ==================
@@ -527,9 +552,102 @@
   /* ==================
      ACTIVE NAV STYLE
   ================== */
-  const style = document.createElement("style");
-  style.textContent = `
+  const navActiveStyle = document.createElement("style");
+  navActiveStyle.textContent = `
     .nav-links a.active { color: var(--amber) !important; }
   `;
-  document.head.appendChild(style);
+  document.head.appendChild(navActiveStyle);
+
+  /* ==================
+     MAKE PS-TEXT EDITABLE
+  ================== */
+  document.querySelectorAll(".ps-text").forEach((el) => {
+    el.setAttribute("contenteditable", "true");
+  });
+
+  /* ==================
+     LIGHTBOX — images + videos
+  ================== */
+  const lightbox      = document.getElementById("lightbox");
+  const lightboxImg   = document.getElementById("lightboxImg");
+  const lightboxVideo = document.getElementById("lightboxVideo");
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  function openLightboxImage(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightboxImg.style.display = "block";
+    lightboxVideo.style.display = "none";
+    lightboxVideo.pause();
+    lightboxVideo.src = "";
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function openLightboxVideo(src) {
+    lightboxVideo.src = src;
+    lightboxVideo.style.display = "block";
+    lightboxImg.style.display = "none";
+    lightboxImg.src = "";
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+    lightboxVideo.play().catch(() => {});
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    document.body.style.overflow = "";
+    lightboxImg.src = "";
+    lightboxImg.style.display = "none";
+    lightboxVideo.pause();
+    lightboxVideo.src = "";
+    lightboxVideo.style.display = "none";
+  }
+
+  // Clickable images
+  document.querySelectorAll(".proj-img").forEach((img) => {
+    img.addEventListener("click", () => openLightboxImage(img.src, img.alt));
+  });
+
+  // Clickable videos — grab src from <source> tag if needed
+  document.querySelectorAll(".proj-video").forEach((vid) => {
+    vid.addEventListener("click", () => {
+      const src = vid.src || (vid.querySelector("source") ? vid.querySelector("source").src : "");
+      if (src) openLightboxVideo(src);
+    });
+  });
+
+  if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+  if (lightbox) {
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
+
+  /* ==================
+     LAZY VIDEO AUTOPLAY
+  ================== */
+  document.querySelectorAll(".proj-video").forEach((v) => {
+    v.muted = true;
+    v.playsInline = true;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            v.play().catch(() => {});
+          } else {
+            v.pause();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(v);
+  });
+
 })();

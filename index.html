@@ -200,58 +200,170 @@
       <h2 class="section-heading">Engineering work.</h2>
       <div class="projects-grid">
 
+        <!-- ── PROJECT 01 — Reciprocating Saw ── -->
         <div class="project-card" data-index="01">
           <div class="proj-num">01</div>
           <div class="proj-content">
             <div class="proj-title">Reciprocating Saw Mechanism Design</div>
             <div class="proj-tools">SolidWorks · FEA</div>
-            <p class="proj-desc">Designed a cam-follower mechanism delivering 200 N cutting force. Conducted feasibility analysis, determined load and motion profiles, and produced complete 3D models, drawings, and BOMs from concept through release-ready documentation. FEA validated stress, deformation, and fatigue safety factors across critical components.</p>
+
+            <!-- Media -->
+            <div class="proj-media">
+              <video autoplay muted loop playsinline class="proj-video">
+                <source src="assets/reciprocating%20saw.mp4" type="video/mp4" />
+              </video>
+            </div>
+
             <div class="proj-highlights">
               <span class="ph">200 N Cutting Force</span>
               <span class="ph">Full BOM + Drawings</span>
               <span class="ph">Fatigue Safety Validated</span>
             </div>
+
+            <!-- Structured sections -->
+            <div class="proj-sections">
+              <div class="ps-block">
+                <div class="ps-label">◎ Objective</div>
+                <p class="ps-text">Design a cam-follower mechanism capable of delivering a 200 N cutting force for a reciprocating saw application, progressing from concept through release-ready documentation.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◈ Methodology</div>
+                <p class="ps-text">Conducted detailed feasibility analysis and determined load profiles and motion requirements. Built complete 3D models in SolidWorks, produced drawings and BOMs. Performed FEA to evaluate stress, deformation, and fatigue safety factors across all critical components prior to fabrication.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◉ Results</div>
+                <p class="ps-text">Mechanism successfully delivers 200 N cutting force within design constraints. FEA confirmed adequate fatigue safety factors across all load-bearing components. Complete release-ready documentation package produced including drawings, BOMs, and revision records.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◇ Future Improvements</div>
+                <p class="ps-text">Add dynamic simulation to analyze vibration behavior under cyclic loading. Explore lightweight material substitutions to reduce overall mechanism weight while maintaining force output.</p>
+              </div>
+            </div>
           </div>
         </div>
 
+        <!-- ── PROJECT 02 — PS5 Controller ── -->
         <div class="project-card" data-index="02">
           <div class="proj-num">02</div>
           <div class="proj-content">
             <div class="proj-title">PS5 Controller Joystick Holder — DFM</div>
             <div class="proj-tools">SolidWorks · 3D Printing</div>
-            <p class="proj-desc">Consumer product component designed applying DFM principles. Developed prototype, performed hands-on testing, and iterated geometry until specifications were met. Produced production-ready drawings optimizing design for cost efficiency, material usage, and fabrication feasibility.</p>
+
+            <!-- Media -->
+            <div class="proj-media">
+              <img src="assets/ps5 controller holder.png" alt="PS5 Controller Joystick Holder" class="proj-img" />
+            </div>
+
             <div class="proj-highlights">
               <span class="ph">DFM Principles</span>
               <span class="ph">Prototype Tested</span>
               <span class="ph">Production Drawings</span>
             </div>
+
+            <div class="proj-sections">
+              <div class="ps-block">
+                <div class="ps-label">◎ Objective</div>
+                <p class="ps-text">Design a functional consumer product component — a PS5 controller joystick holder — applying DFM principles to ensure the design is optimized for low-cost fabrication and repeatable manufacturing.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◈ Methodology</div>
+                <p class="ps-text">Modeled the component in SolidWorks with DFM constraints in mind. 3D printed a prototype sample and performed hands-on fit and function testing. Iterated on geometry based on test feedback until all product specifications were met.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◉ Results</div>
+                <p class="ps-text">Final design meets all fit and function specifications. Production drawings completed with DFM-optimized geometry, minimizing material waste and machining complexity. Component validated through physical prototype testing.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◇ Future Improvements</div>
+                <p class="ps-text">Evaluate injection molding feasibility as a higher-volume manufacturing path. Conduct drop/impact testing to validate durability under real-world use conditions.</p>
+              </div>
+            </div>
           </div>
         </div>
 
+        <!-- ── PROJECT 03 — Composite Chassis (Featured) ── -->
         <div class="project-card featured" data-index="03">
           <div class="proj-num">03</div>
           <div class="proj-content">
             <div class="proj-title">Ladder Chassis Frame — Composite Structural Design</div>
             <div class="proj-tools">SolidWorks · Abaqus</div>
-            <p class="proj-desc">Designed a full structural frame using fiberglass composite laminates. Evaluated material options and selected layup orientation based on load path and cost requirements. Performed static FEA in Abaqus across multiple load cases, achieving significant weight reduction while maintaining structural equivalence.</p>
+
+            <!-- Media gallery -->
+            <div class="proj-media proj-gallery">
+              <img src="assets/composite chassis frame project 1.png" alt="Composite chassis frame — overview" class="proj-img gallery-main" />
+              <div class="gallery-row">
+                <img src="assets/composite chassis frame project 2.png" alt="Composite chassis FEA stress" class="proj-img gallery-thumb" />
+                <img src="assets/composite chassis frame project 3.png" alt="Composite chassis displacement" class="proj-img gallery-thumb" />
+              </div>
+            </div>
+
             <div class="proj-highlights">
               <span class="ph highlight">34.7% Weight Reduction</span>
               <span class="ph">Multi-Layup FEA</span>
               <span class="ph">Equivalent Strength</span>
             </div>
+
+            <div class="proj-sections">
+              <div class="ps-block">
+                <div class="ps-label">◎ Objective</div>
+                <p class="ps-text">Design a full ladder chassis structural frame using fiberglass composite laminates that achieves significant weight reduction compared to a steel baseline while maintaining equivalent structural strength under all critical load cases.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◈ Methodology</div>
+                <p class="ps-text">Evaluated material options and selected layup orientations based on load path analysis and cost requirements. Modeled the full frame in SolidWorks and performed static FEA in Abaqus across multiple load cases. Iterated geometry and layup schedule to optimize strength-to-weight ratio.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◉ Results</div>
+                <p class="ps-text">Achieved a 34.7% weight reduction compared to the steel baseline with structurally equivalent performance confirmed across all FEA load cases. Complete fabrication drawings and material specifications produced for manufacturing handoff.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◇ Future Improvements</div>
+                <p class="ps-text">Extend analysis to dynamic and fatigue loading scenarios. Explore carbon fiber hybrid layups for further weight savings. Validate FEA predictions against physical coupon testing.</p>
+              </div>
+            </div>
           </div>
         </div>
 
+        <!-- ── PROJECT 04 — Scroll Compressor ── -->
         <div class="project-card" data-index="04">
           <div class="proj-num">04</div>
           <div class="proj-content">
             <div class="proj-title">Scroll Compressor Kinematic & Thermodynamic Simulation</div>
             <div class="proj-tools">MATLAB · SolidWorks</div>
-            <p class="proj-desc">Developed a 1,000+ line first-principles MATLAB model integrating kinematics, thermodynamics, and computational geometry to characterize compression cycle behavior. Engineered a fluid pocket tracking algorithm computing dynamic P-V curves, discharge pressures, and volumetric efficiency. Research progressing toward publication.</p>
+
+            <!-- Dual video -->
+            <div class="proj-media proj-dual-video">
+              <video autoplay muted loop playsinline class="proj-video">
+                <source src="assets/scroll%20compressor%20project%201.mp4" type="video/mp4" />
+              </video>
+              <video autoplay muted loop playsinline class="proj-video">
+                <source src="assets/scroll%20compressor%20project%202.mp4" type="video/mp4" />
+              </video>
+            </div>
+
             <div class="proj-highlights">
               <span class="ph">1,000+ Line Model</span>
-              <span class="ph">Publication Track</span>
+              <span class="ph highlight">Publication Track</span>
               <span class="ph">P-V Curve Algorithm</span>
+            </div>
+
+            <div class="proj-sections">
+              <div class="ps-block">
+                <div class="ps-label">◎ Objective</div>
+                <p class="ps-text">Develop a first-principles computational model of a scroll compressor that accurately characterizes compression cycle behavior — including working chamber volumes, fluid pocket dynamics, and thermodynamic state changes — to support design optimization and research publication.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◈ Methodology</div>
+                <p class="ps-text">Built a 1,000+ line MATLAB model integrating kinematic geometry, thermodynamic equations, and computational geometry. Engineered a fluid pocket tracking algorithm to compute dynamic P-V curves, discharge pressures, and volumetric efficiency as a function of crank angle.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◉ Results</div>
+                <p class="ps-text">Model successfully computes dynamic P-V curves, discharge pressures, and volumetric efficiency across the full compression cycle. Fluid pocket tracking algorithm accurately captures gas pocket formation and evolution. Research progressing toward publication under faculty supervision.</p>
+              </div>
+              <div class="ps-block">
+                <div class="ps-label">◇ Future Improvements</div>
+                <p class="ps-text">Incorporate heat transfer and leakage loss models for higher fidelity simulation. Extend the model to parametric design optimization. Validate against experimental compressor test data prior to publication.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -259,6 +371,14 @@
       </div>
     </div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <img src="" alt="" id="lightboxImg" style="display:none;" />
+    <video id="lightboxVideo" controls style="display:none;" playsinline></video>
+    <div class="lightbox-hint">ESC or click outside to close</div>
+  </div>
 
   <!-- SKILLS -->
   <section class="section skills" id="skills">
@@ -370,7 +490,7 @@
   <!-- CONTACT -->
   <section class="section contact" id="contact">
     <div class="container">
-      <div class="section-label">006 — Contact</div>
+      <div class="section-label">007 — Contact</div>
       <div class="contact-inner">
         <h2 class="contact-heading">Let's build something<br /><em>remarkable.</em></h2>
         <p class="contact-sub">Open to full-time Product Engineer, Design Engineer, and R&D roles. Currently based in Dayton, OH.</p>
