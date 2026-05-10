@@ -1054,6 +1054,369 @@
       .about-cards { grid-template-columns: 1fr; }
       .proj-dual-video { grid-template-columns: 1fr; }
     }
+    /* ─── PROJECT PHOTO GRID (Kashish style) ───────────────────── */
+    .proj-grid-hint {
+      font-size: var(--fs-base);
+      color: var(--text-2);
+      font-weight: 300;
+      margin-bottom: clamp(32px, 5vw, 56px);
+      margin-top: -20px;
+    }
+
+    .proj-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    /* 4th card spans full width on its own row */
+    .proj-photo-card:last-child:nth-child(3n+1) {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .proj-photo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-photo-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .ppc-thumb {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-3);
+      flex-shrink: 0;
+    }
+
+    .ppc-img, .ppc-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .proj-photo-card:hover .ppc-img,
+    .proj-photo-card:hover .ppc-video {
+      transform: scale(1.05);
+    }
+
+    .ppc-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(12,13,15,0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .proj-photo-card:hover .ppc-overlay { opacity: 1; }
+
+    .ppc-cta {
+      font-family: var(--ff-body);
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+    }
+
+    .ppc-info {
+      padding: clamp(18px, 2.5vw, 28px);
+      flex: 1;
+    }
+
+    .ppc-title {
+      font-family: var(--ff-body);
+      font-size: var(--fs-md);
+      font-weight: 700;
+      color: var(--text);
+      line-height: var(--lh-snug);
+      margin-bottom: 10px;
+      letter-spacing: var(--ls-snug);
+    }
+
+    .ppc-desc {
+      font-size: var(--fs-sm);
+      line-height: var(--lh-base);
+      color: var(--text-2);
+      font-weight: 300;
+    }
+
+    /* last card full-width layout tweaks */
+    .proj-photo-card:last-child:nth-child(3n+1) .ppc-thumb {
+      aspect-ratio: auto;
+      min-height: 280px;
+    }
+    .proj-photo-card:last-child:nth-child(3n+1) .ppc-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(28px, 4vw, 48px);
+    }
+
+    /* ─── CASE STUDY BACKDROP ───────────────────────────────────── */
+    .cs-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 950;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .cs-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ─── CASE STUDY PANEL ──────────────────────────────────────── */
+    .cs-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 960;
+      background: var(--bg-2);
+      overflow-y: auto;
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-panel.open {
+      transform: translateY(0);
+    }
+
+    /* Close button */
+    .cs-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 970;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border-hi);
+      color: var(--text-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .cs-close:hover {
+      background: var(--accent);
+      color: var(--text-inv);
+      border-color: var(--accent);
+    }
+
+    /* Panel header */
+    .cs-header {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: clamp(28px, 4vw, 48px) clamp(24px, 5vw, 80px);
+      padding-right: 80px;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    .cs-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-tight);
+      margin-bottom: 10px;
+    }
+
+    .cs-meta {
+      font-family: var(--ff-mono);
+      font-size: var(--fs-xs);
+      letter-spacing: var(--ls-wide);
+      color: var(--text-3);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cs-meta-badge {
+      background: rgba(200,169,110,0.15);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    /* Panel body */
+    .cs-body {
+      padding: clamp(40px, 5vw, 72px) clamp(24px, 5vw, 80px);
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .cs-section {}
+
+    .cs-section-title {
+      font-family: var(--ff-mono);
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cs-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Why grid */
+    .cs-why-grid, .cs-how-grid, .cs-results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .cs-why-media, .cs-how-media, .cs-results-media {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-3);
+    }
+
+    .cs-why-media img, .cs-how-media img, .cs-results-media img,
+    .cs-why-media video, .cs-how-media video, .cs-results-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* dual video in panel */
+    .cs-dual-video {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .cs-dual-video video { width: 100%; height: auto; display: block; }
+
+    /* multi-image gallery in panel */
+    .cs-img-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+    .cs-img-gallery .gallery-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .cs-img-gallery img { width: 100%; height: auto; display: block; object-fit: contain; }
+
+    /* Points lists */
+    .cs-why-points, .cs-how-points, .cs-results-points {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0;
+    }
+
+    .cs-why-points li, .cs-how-points li, .cs-results-points li {
+      font-size: var(--fs-base);
+      line-height: var(--lh-base);
+      color: var(--text-2);
+      font-weight: 300;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .cs-why-points li::before,
+    .cs-how-points li::before,
+    .cs-results-points li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7em;
+      top: 4px;
+    }
+
+    /* Tech tags */
+    .cs-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cs-tech-tags span {
+      font-family: var(--ff-mono);
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(200,169,110,0.3);
+      padding: 7px 16px;
+      border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .proj-photo-grid { grid-template-columns: 1fr 1fr; }
+      .proj-photo-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+      .proj-photo-card:last-child:nth-child(3n+1) { grid-template-columns: 1fr; }
+      .proj-photo-card:last-child:nth-child(3n+1) .ppc-thumb { min-height: 240px; }
+      .cs-why-grid, .cs-how-grid, .cs-results-grid { grid-template-columns: 1fr; }
+      .cs-how-grid .cs-how-media { order: -1; }
+    }
+
+    @media (max-width: 640px) {
+      .proj-photo-grid { grid-template-columns: 1fr; }
+      .cs-dual-video { grid-template-columns: 1fr; }
+      .cs-img-gallery .gallery-row-2 { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -1251,152 +1614,64 @@
     <div class="container">
       <div class="section-label reveal">004 — Projects</div>
       <h2 class="section-heading reveal">Engineering work.</h2>
-      <div class="projects-grid">
+      <p class="proj-grid-hint reveal">Here's a peek at what I've been designing and building. Click any picture that makes you curious.</p>
 
-        <div class="project-card featured reveal" data-index="01">
-          <div class="proj-num">01</div>
-          <div class="proj-content">
-            <div class="proj-title">Scroll Compressor Kinematic &amp; Thermodynamic Simulation</div>
-            <div class="proj-tools">MATLAB · SolidWorks</div>
-            <div class="proj-media proj-dual-video">
-              <video autoplay muted loop playsinline class="proj-video">
-                <source src="assets/scroll%20compressor%20project%201.mp4" type="video/mp4" />
-              </video>
-              <video autoplay muted loop playsinline class="proj-video">
-                <source src="assets/scroll%20compressor%20project%202.mp4" type="video/mp4" />
-              </video>
+      <!-- Photo card grid — Kashish style -->
+      <div class="proj-photo-grid">
+
+        <div class="proj-photo-card reveal" data-project="scroll-compressor">
+          <div class="ppc-thumb">
+            <video autoplay muted loop playsinline class="ppc-video">
+              <source src="assets/scroll%20compressor%20project%201.mp4" type="video/mp4" />
+            </video>
+            <div class="ppc-overlay">
+              <span class="ppc-cta">View case study →</span>
             </div>
-            <div class="proj-highlights">
-              <span class="ph">1,000+ Line Model</span>
-              <span class="ph highlight">Publication Track</span>
-              <span class="ph">P-V Curve Algorithm</span>
-            </div>
-            <div class="proj-sections">
-              <div class="ps-block">
-                <div class="ps-label">◎ Objective</div>
-                <p class="ps-text">Develop a first-principles computational model of a scroll compressor that accurately characterizes compression cycle behavior — including working chamber volumes, fluid pocket dynamics, and thermodynamic state changes — to support design optimization and research publication.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◈ Methodology</div>
-                <p class="ps-text">Built a 1,000+ line MATLAB model integrating kinematic geometry, thermodynamic equations, and computational geometry. Engineered a fluid pocket tracking algorithm to compute dynamic P-V curves, discharge pressures, and volumetric efficiency as a function of crank angle.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◉ Results</div>
-                <p class="ps-text">Model successfully computes dynamic P-V curves, discharge pressures, and volumetric efficiency across the full compression cycle. Fluid pocket tracking algorithm accurately captures gas pocket formation and evolution. Research progressing toward publication under faculty supervision.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◇ Future</div>
-                <p class="ps-text">Incorporate heat transfer and leakage loss models for higher fidelity simulation. Extend the model to parametric design optimization. Validate against experimental compressor test data prior to publication.</p>
-              </div>
-            </div>
+          </div>
+          <div class="ppc-info">
+            <h3 class="ppc-title">Scroll Compressor Simulation</h3>
+            <p class="ppc-desc">1,000+ line first-principles MATLAB model integrating kinematics, thermodynamics, and computational geometry to characterize compression cycle behavior.</p>
           </div>
         </div>
 
-        <div class="project-card reveal" data-index="02">
-          <div class="proj-num">02</div>
-          <div class="proj-content">
-            <div class="proj-title">Reciprocating Saw Mechanism Design</div>
-            <div class="proj-tools">SolidWorks · FEA</div>
-            <div class="proj-media">
-              <video autoplay muted loop playsinline class="proj-video">
-                <source src="assets/reciprocating%20saw.mp4" type="video/mp4" />
-              </video>
+        <div class="proj-photo-card reveal" data-project="reciprocating-saw">
+          <div class="ppc-thumb">
+            <video autoplay muted loop playsinline class="ppc-video">
+              <source src="assets/reciprocating%20saw.mp4" type="video/mp4" />
+            </video>
+            <div class="ppc-overlay">
+              <span class="ppc-cta">View case study →</span>
             </div>
-            <div class="proj-highlights">
-              <span class="ph">200 N Cutting Force</span>
-              <span class="ph">Full BOM + Drawings</span>
-              <span class="ph">Fatigue Safety Validated</span>
-            </div>
-            <div class="proj-sections">
-              <div class="ps-block">
-                <div class="ps-label">◎ Objective</div>
-                <p class="ps-text">Design a cam-follower mechanism capable of delivering a 200 N cutting force for a reciprocating saw application, progressing from concept through release-ready documentation.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◈ Methodology</div>
-                <p class="ps-text">Conducted detailed feasibility analysis and determined load profiles and motion requirements. Built complete 3D models in SolidWorks, produced drawings and BOMs. Performed FEA to evaluate stress, deformation, and fatigue safety factors across all critical components.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◉ Results</div>
-                <p class="ps-text">Mechanism delivers 200 N cutting force within design constraints. FEA confirmed adequate fatigue safety factors across all load-bearing components. Complete release-ready documentation produced including drawings, BOMs, and revision records.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◇ Future</div>
-                <p class="ps-text">Add dynamic simulation to analyze vibration behavior under cyclic loading. Explore lightweight material substitutions to reduce overall mechanism weight while maintaining force output.</p>
-              </div>
-            </div>
+          </div>
+          <div class="ppc-info">
+            <h3 class="ppc-title">Reciprocating Saw Mechanism</h3>
+            <p class="ppc-desc">Cam-follower mechanism delivering 200 N cutting force — concept through release-ready documentation with full FEA validation.</p>
           </div>
         </div>
 
-        <div class="project-card reveal" data-index="03">
-          <div class="proj-num">03</div>
-          <div class="proj-content">
-            <div class="proj-title">Ladder Chassis Frame — Composite Structural Design</div>
-            <div class="proj-tools">SolidWorks · Abaqus</div>
-            <div class="proj-media proj-gallery">
-              <img src="assets/composite chassis frame project 1.png" alt="Composite chassis overview" class="proj-img gallery-main" />
-              <div class="gallery-row">
-                <img src="assets/composite chassis frame project 2.png" alt="FEA stress" class="proj-img gallery-thumb" />
-                <img src="assets/composite chassis frame project 3.png" alt="Displacement" class="proj-img gallery-thumb" />
-              </div>
+        <div class="proj-photo-card reveal" data-project="chassis">
+          <div class="ppc-thumb">
+            <img src="assets/composite chassis frame project 1.png" alt="Composite Chassis Frame" class="ppc-img" />
+            <div class="ppc-overlay">
+              <span class="ppc-cta">View case study →</span>
             </div>
-            <div class="proj-highlights">
-              <span class="ph highlight">34.7% Weight Reduction</span>
-              <span class="ph">Multi-Layup FEA</span>
-              <span class="ph">Equivalent Strength</span>
-            </div>
-            <div class="proj-sections">
-              <div class="ps-block">
-                <div class="ps-label">◎ Objective</div>
-                <p class="ps-text">Design a full ladder chassis structural frame using fiberglass composite laminates that achieves significant weight reduction compared to a steel baseline while maintaining equivalent structural strength under all critical load cases.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◈ Methodology</div>
-                <p class="ps-text">Evaluated material options and selected layup orientations based on load path analysis. Modeled the full frame in SolidWorks and performed static FEA in Abaqus across multiple load cases. Iterated geometry and layup schedule to optimize strength-to-weight ratio.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◉ Results</div>
-                <p class="ps-text">Achieved 34.7% weight reduction vs. steel baseline with structurally equivalent performance confirmed across all FEA load cases. Complete fabrication drawings and material specifications produced for manufacturing handoff.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◇ Future</div>
-                <p class="ps-text">Extend analysis to dynamic and fatigue loading scenarios. Explore carbon fiber hybrid layups for further weight savings. Validate FEA predictions against physical coupon testing.</p>
-              </div>
-            </div>
+          </div>
+          <div class="ppc-info">
+            <h3 class="ppc-title">Composite Chassis Frame</h3>
+            <p class="ppc-desc">Fiberglass composite structural frame achieving 34.7% weight reduction with equivalent structural strength through multi-load-case FEA.</p>
           </div>
         </div>
 
-        <div class="project-card reveal" data-index="04">
-          <div class="proj-num">04</div>
-          <div class="proj-content">
-            <div class="proj-title">PS5 Controller Joystick Holder — DFM</div>
-            <div class="proj-tools">SolidWorks · 3D Printing</div>
-            <div class="proj-media">
-              <img src="assets/ps5 controller holder.png" alt="PS5 Controller Joystick Holder" class="proj-img" />
+        <div class="proj-photo-card reveal" data-project="ps5">
+          <div class="ppc-thumb">
+            <img src="assets/ps5 controller holder.png" alt="PS5 Controller Joystick Holder" class="ppc-img" />
+            <div class="ppc-overlay">
+              <span class="ppc-cta">View case study →</span>
             </div>
-            <div class="proj-highlights">
-              <span class="ph">DFM Principles</span>
-              <span class="ph">Prototype Tested</span>
-              <span class="ph">Production Drawings</span>
-            </div>
-            <div class="proj-sections">
-              <div class="ps-block">
-                <div class="ps-label">◎ Objective</div>
-                <p class="ps-text">Design a functional consumer product component — a PS5 controller joystick holder — applying DFM principles to ensure the design is optimized for low-cost fabrication and repeatable manufacturing.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◈ Methodology</div>
-                <p class="ps-text">Modeled the component in SolidWorks with DFM constraints in mind. 3D printed a prototype sample and performed hands-on fit and function testing. Iterated on geometry based on test feedback until all product specifications were met.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◉ Results</div>
-                <p class="ps-text">Final design meets all fit and function specifications. Production drawings completed with DFM-optimized geometry, minimizing material waste and machining complexity. Component validated through physical prototype testing.</p>
-              </div>
-              <div class="ps-block">
-                <div class="ps-label">◇ Future</div>
-                <p class="ps-text">Evaluate injection molding feasibility as a higher-volume manufacturing path. Conduct drop/impact testing to validate durability under real-world use conditions.</p>
-              </div>
-            </div>
+          </div>
+          <div class="ppc-info">
+            <h3 class="ppc-title">PS5 Joystick Holder — DFM</h3>
+            <p class="ppc-desc">Consumer product component designed with DFM principles — prototype tested, production drawings complete, optimized for cost and fabrication.</p>
           </div>
         </div>
 
@@ -1404,12 +1679,60 @@
     </div>
   </section>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
-    <img src="" alt="" id="lightboxImg" style="display:none;" />
-    <video id="lightboxVideo" controls style="display:none;" playsinline></video>
-    <div class="lightbox-hint">ESC or click outside to close</div>
+  <!-- ═══════════════════════════════════════════
+       CASE STUDY PANEL (slides in like Kashish)
+  ════════════════════════════════════════════ -->
+  <div class="cs-backdrop" id="csBackdrop"></div>
+  <div class="cs-panel" id="csPanel" role="dialog" aria-modal="true" aria-label="Project case study">
+
+    <!-- Close -->
+    <button class="cs-close" id="csClose" aria-label="Close case study">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Panel header (title bar fixed at top) -->
+    <div class="cs-header" id="csHeader">
+      <h2 class="cs-title" id="csTitle"></h2>
+      <div class="cs-meta" id="csMeta"></div>
+    </div>
+
+    <!-- Scrollable body -->
+    <div class="cs-body" id="csBody">
+
+      <!-- Why? -->
+      <div class="cs-section">
+        <h3 class="cs-section-title">Why?</h3>
+        <div class="cs-why-grid">
+          <div class="cs-why-media" id="csWhyMedia"></div>
+          <ul class="cs-why-points" id="csWhyPoints"></ul>
+        </div>
+      </div>
+
+      <!-- How? -->
+      <div class="cs-section">
+        <h3 class="cs-section-title">How?</h3>
+        <div class="cs-how-grid">
+          <ul class="cs-how-points" id="csHowPoints"></ul>
+          <div class="cs-how-media" id="csHowMedia"></div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="cs-section">
+        <h3 class="cs-section-title">Results</h3>
+        <div class="cs-results-grid">
+          <div class="cs-results-media" id="csResultsMedia"></div>
+          <ul class="cs-results-points" id="csResultsPoints"></ul>
+        </div>
+      </div>
+
+      <!-- Tech stack -->
+      <div class="cs-section">
+        <h3 class="cs-section-title">Tools &amp; Stack</h3>
+        <div class="cs-tech-tags" id="csTechTags"></div>
+      </div>
+
+    </div>
   </div>
 
   <!-- SKILLS -->
@@ -1536,24 +1859,19 @@
   </footer>
 
   <script>
-    // ── Nav scroll ──
+    /* ── Nav scroll ── */
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
-    // ── Mobile menu ──
+    /* ── Mobile menu ── */
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
-    });
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
-    // ── Reveal on scroll ──
-    const reveals = document.querySelectorAll('.reveal');
+    /* ── Reveal on scroll ── */
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
@@ -1561,10 +1879,10 @@
           revealObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => revealObs.observe(el));
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    // ── Skill bars animate ──
+    /* ── Skill bars ── */
     const fillObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1577,33 +1895,251 @@
     }, { threshold: 0.3 });
     document.querySelectorAll('.skill-group').forEach(g => fillObs.observe(g));
 
-    // ── Lightbox ──
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    const lbVideo = document.getElementById('lightboxVideo');
-    const lbClose = document.getElementById('lightboxClose');
-
-    document.querySelectorAll('.proj-img').forEach(img => {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', () => {
-        lbImg.src = img.src;
-        lbImg.alt = img.alt;
-        lbImg.style.display = 'block';
-        lbVideo.style.display = 'none';
-        lbVideo.pause();
-        lightbox.classList.add('active');
+    /* ── Video lazy-play ── */
+    const videoObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const v = entry.target;
+        if (entry.isIntersecting) v.play().catch(() => {});
+        else v.pause();
       });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.ppc-video').forEach(v => {
+      v.muted = true; v.playsInline = true;
+      videoObs.observe(v);
     });
 
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      lbVideo.pause();
-      lbImg.style.display = 'none';
-      lbVideo.style.display = 'none';
+    /* ════════════════════════════════════════════
+       CASE STUDY PANEL DATA
+    ════════════════════════════════════════════ */
+    const PROJECTS = {
+      'scroll-compressor': {
+        title:  'Scroll Compressor Kinematic & Thermodynamic Simulation',
+        tools:  'MATLAB · SolidWorks',
+        status: 'Publication Track',
+        why: {
+          media: `<div class="cs-dual-video">
+                    <video autoplay muted loop playsinline>
+                      <source src="assets/scroll%20compressor%20project%201.mp4" type="video/mp4" />
+                    </video>
+                    <video autoplay muted loop playsinline>
+                      <source src="assets/scroll%20compressor%20project%202.mp4" type="video/mp4" />
+                    </video>
+                  </div>`,
+          points: [
+            'Existing literature lacks a unified computational framework that couples kinematics, thermodynamics, and geometry for scroll compressor analysis.',
+            'Understanding working chamber volume evolution and fluid pocket dynamics is critical for optimizing compression efficiency.',
+            'A validated first-principles MATLAB model enables rapid parametric design studies without expensive physical prototyping.',
+          ]
+        },
+        how: {
+          media: `<video autoplay muted loop playsinline style="width:100%;height:auto;display:block;">
+                    <source src="assets/scroll%20compressor%20project%202.mp4" type="video/mp4" />
+                  </video>`,
+          points: [
+            'Built a 1,000+ line MATLAB model integrating kinematic geometry, thermodynamic equations, and computational geometry from first principles.',
+            'Derived scroll involute geometry analytically and computed instantaneous working chamber volumes as a function of crank angle.',
+            'Engineered a fluid pocket tracking algorithm to identify pocket formation, evolution, and discharge events dynamically.',
+            'Computed P-V curves, discharge pressures, and volumetric efficiency across the full compression cycle.',
+            'Validated model outputs against theoretical benchmarks and analytical solutions from compressor literature.',
+          ]
+        },
+        results: {
+          media: `<video autoplay muted loop playsinline style="width:100%;height:auto;display:block;">
+                    <source src="assets/scroll%20compressor%20project%201.mp4" type="video/mp4" />
+                  </video>`,
+          points: [
+            'Model accurately computes dynamic P-V curves, discharge pressures, and volumetric efficiency across the full compression cycle.',
+            'Fluid pocket tracking algorithm correctly captures gas pocket formation, evolution, and discharge timing.',
+            'Computational results show strong agreement with analytical benchmarks — research progressing toward publication under faculty supervision.',
+            'Framework enables rapid sensitivity studies for design parameters including wrap angle, base circle radius, and tip clearance.',
+          ]
+        },
+        tech: ['MATLAB', 'SolidWorks', 'Kinematics', 'Thermodynamics', 'Computational Geometry', 'P-V Analysis']
+      },
+
+      'reciprocating-saw': {
+        title:  'Reciprocating Saw Mechanism Design',
+        tools:  'SolidWorks · FEA · GD&T',
+        status: 'Completed',
+        why: {
+          media: `<video autoplay muted loop playsinline style="width:100%;height:auto;display:block;">
+                    <source src="assets/reciprocating%20saw.mp4" type="video/mp4" />
+                  </video>`,
+          points: [
+            'Cam-follower mechanisms offer precise motion control for reciprocating applications, but require careful load path and fatigue analysis to ensure reliability.',
+            'Design specifications demanded a minimum 200 N cutting force with validated fatigue life — requiring rigorous FEA beyond typical academic projects.',
+            'Full release-ready documentation (drawings, BOMs, revision records) was required — mirroring real product development lifecycle expectations.',
+          ]
+        },
+        how: {
+          media: `<video autoplay muted loop playsinline style="width:100%;height:auto;display:block;">
+                    <source src="assets/reciprocating%20saw.mp4" type="video/mp4" />
+                  </video>`,
+          points: [
+            'Defined load profiles and motion requirements through detailed feasibility analysis and kinematic synthesis.',
+            'Designed cam profile geometry to deliver the required 200 N cutting force at specified stroke length and frequency.',
+            'Built complete 3D solid models in SolidWorks with GD&T-annotated drawings and full BOM.',
+            'Performed FEA in ANSYS Mechanical to evaluate von Mises stress, deformation, and fatigue safety factors across all critical components.',
+            'Identified design risks through FEA iteration and implemented geometry improvements prior to documentation release.',
+          ]
+        },
+        results: {
+          media: `<video autoplay muted loop playsinline style="width:100%;height:auto;display:block;">
+                    <source src="assets/reciprocating%20saw.mp4" type="video/mp4" />
+                  </video>`,
+          points: [
+            'Mechanism delivers the specified 200 N cutting force within all design constraints.',
+            'FEA confirmed adequate fatigue safety factors across all load-bearing components under worst-case cyclic loading.',
+            'Complete release-ready documentation package produced: detailed drawings, BOM, ECO, and revision records.',
+            'Design passed all internal feasibility and manufacturability reviews with no open issues at release.',
+          ]
+        },
+        tech: ['SolidWorks', 'ANSYS Mechanical', 'FEA', 'GD&T', 'DFM', 'BOM', 'ECO', 'Cam-Follower Kinematics']
+      },
+
+      'chassis': {
+        title:  'Ladder Chassis Frame — Composite Structural Design',
+        tools:  'SolidWorks · Abaqus · Composite Mechanics',
+        status: 'Completed',
+        why: {
+          media: `<div class="cs-img-gallery">
+                    <img src="assets/composite chassis frame project 1.png" alt="Composite chassis overview" />
+                    <div class="gallery-row-2">
+                      <img src="assets/composite chassis frame project 2.png" alt="FEA stress plot" />
+                      <img src="assets/composite chassis frame project 3.png" alt="Displacement plot" />
+                    </div>
+                  </div>`,
+          points: [
+            'Conventional steel ladder chassis frames carry significant weight penalties — composite alternatives can deliver equivalent structural performance at a fraction of the mass.',
+            'Selecting optimal layup orientations for fiberglass composites requires load-path-aware analysis, not arbitrary stacking sequences.',
+            'Project objective: demonstrate a validated design workflow from material selection through FEA-confirmed structural equivalence.',
+          ]
+        },
+        how: {
+          media: `<img src="assets/composite chassis frame project 2.png" alt="FEA stress distribution" style="width:100%;height:auto;display:block;" />`,
+          points: [
+            'Evaluated fiberglass vs. carbon fiber vs. hybrid composites based on stiffness, strength, cost, and fabrication feasibility.',
+            'Designed full ladder frame geometry in SolidWorks, establishing load paths and member cross-sections from vehicle load cases.',
+            'Selected layup orientations (0°/90°/±45°) for each structural member based on dominant stress directions from preliminary analysis.',
+            'Performed static FEA in Abaqus across multiple load cases: torsion, bending, combined, and impact loading.',
+            'Iterated layup schedule and geometry to minimize mass while maintaining safety factors above requirements in all load cases.',
+          ]
+        },
+        results: {
+          media: `<img src="assets/composite chassis frame project 3.png" alt="Displacement and stress results" style="width:100%;height:auto;display:block;" />`,
+          points: [
+            '34.7% weight reduction achieved compared to equivalent steel baseline frame.',
+            'Structural equivalence confirmed across all FEA load cases — stress and displacement within specification.',
+            'Layup orientations validated through Abaqus composite ply analysis with interlaminar shear stress checks.',
+            'Complete fabrication drawings, ply schedules, and material specifications produced for manufacturing handoff.',
+          ]
+        },
+        tech: ['SolidWorks', 'Abaqus', 'Composite Mechanics', 'FEA', 'Fiberglass Laminates', 'Layup Design', 'DFM']
+      },
+
+      'ps5': {
+        title:  'PS5 Controller Joystick Holder — DFM',
+        tools:  'SolidWorks · 3D Printing · DFM',
+        status: 'Completed',
+        why: {
+          media: `<img src="assets/ps5 controller holder.png" alt="PS5 Joystick Holder" style="width:100%;height:auto;display:block;" />`,
+          points: [
+            'Consumer product components must balance functional requirements with manufacturing cost — a direct application of Design for Manufacturing (DFM) principles.',
+            'Standard joystick holders lack ergonomic adaptability; this component addresses fit, function, and ease of fabrication simultaneously.',
+            'Project served as a complete DFM workflow exercise: concept → prototype → test → production drawings.',
+          ]
+        },
+        how: {
+          media: `<img src="assets/ps5 controller holder.png" alt="PS5 Joystick Holder detail" style="width:100%;height:auto;display:block;" />`,
+          points: [
+            'Defined fit, form, and function requirements from the PS5 controller geometry and user interaction needs.',
+            'Applied DFM principles throughout: draft angles for moldability, wall thickness for printability, minimal support structures.',
+            'Modeled component in SolidWorks with manufacturing constraints embedded in the design from the start.',
+            '3D printed prototype and performed hands-on fit and function testing against the actual controller.',
+            'Iterated geometry multiple times based on test results until all specifications were met.',
+            'Produced production-ready GD&T-annotated drawings with full manufacturing notes.',
+          ]
+        },
+        results: {
+          media: `<img src="assets/ps5 controller holder.png" alt="Final PS5 Joystick Holder" style="width:100%;height:auto;display:block;" />`,
+          points: [
+            'Final design meets all fit and function specifications — confirmed through physical prototype testing.',
+            'DFM optimization reduced material waste and eliminated unnecessary machining complexity.',
+            'Production-ready drawing package complete with GD&T annotations and manufacturing notes.',
+            'Design validated for repeatable fabrication using both FDM 3D printing and conventional machining paths.',
+          ]
+        },
+        tech: ['SolidWorks', '3D Printing (FDM)', 'DFM', 'GD&T', 'Prototyping', 'Tolerance Analysis']
+      }
+    };
+
+    /* ════════════════════════════════════════════
+       CASE STUDY PANEL LOGIC
+    ════════════════════════════════════════════ */
+    const csPanel    = document.getElementById('csPanel');
+    const csBackdrop = document.getElementById('csBackdrop');
+    const csClose    = document.getElementById('csClose');
+    const csTitle    = document.getElementById('csTitle');
+    const csMeta     = document.getElementById('csMeta');
+    const csWhyMedia    = document.getElementById('csWhyMedia');
+    const csWhyPoints   = document.getElementById('csWhyPoints');
+    const csHowPoints   = document.getElementById('csHowPoints');
+    const csHowMedia    = document.getElementById('csHowMedia');
+    const csResultsMedia  = document.getElementById('csResultsMedia');
+    const csResultsPoints = document.getElementById('csResultsPoints');
+    const csTechTags    = document.getElementById('csTechTags');
+
+    function openProject(key) {
+      const p = PROJECTS[key];
+      if (!p) return;
+
+      csTitle.textContent = p.title;
+      csMeta.innerHTML = `
+        <span class="cs-meta-badge">${p.status}</span>
+        <span>${p.tools}</span>
+      `;
+
+      csWhyMedia.innerHTML = p.why.media;
+      csWhyPoints.innerHTML = p.why.points.map(pt => `<li>${pt}</li>`).join('');
+
+      csHowPoints.innerHTML = p.how.points.map(pt => `<li>${pt}</li>`).join('');
+      csHowMedia.innerHTML  = p.how.media;
+
+      csResultsMedia.innerHTML  = p.results.media;
+      csResultsPoints.innerHTML = p.results.points.map(pt => `<li>${pt}</li>`).join('');
+
+      csTechTags.innerHTML = p.tech.map(t => `<span>${t}</span>`).join('');
+
+      /* lazy-play videos inside panel */
+      csPanel.querySelectorAll('video').forEach(v => {
+        v.muted = true; v.playsInline = true;
+        v.play().catch(() => {});
+      });
+
+      document.getElementById('csBody').scrollTop = 0;
+      csPanel.scrollTop = 0;
+
+      csBackdrop.classList.add('open');
+      csPanel.classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
-    lbClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+    function closeProject() {
+      csPanel.classList.remove('open');
+      csBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+      /* pause panel videos */
+      csPanel.querySelectorAll('video').forEach(v => v.pause());
+    }
+
+    /* Bind card clicks */
+    document.querySelectorAll('.proj-photo-card').forEach(card => {
+      card.addEventListener('click', () => openProject(card.dataset.project));
+    });
+
+    csClose.addEventListener('click', closeProject);
+    csBackdrop.addEventListener('click', closeProject);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
   </script>
 </body>
 </html>
